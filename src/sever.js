@@ -10,6 +10,9 @@ app.listen(PORT, () => console.log("サーバーが起動しました"));
 const morgan = require("morgan");
 app.use(morgan("dev"));
 
+const cors = require("cors");
+app.use(cors());
+
 // jsonファイルの読み込み
 app.use(express.json());
 
