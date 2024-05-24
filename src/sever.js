@@ -1,7 +1,9 @@
+require("dotenv").config();
+
 // サーバー立ち上げ
 const express = require("express");
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log("サーバーが起動しました"));
 
 // モーガン
@@ -27,7 +29,6 @@ app.use("/api/upload", uploadRoute);
 
 // DB接続
 const mongoose = require("mongoose");
-require("dotenv").config();
 mongoose
   .connect(process.env.MONGO_URL)
   .then(() => console.log("データベースと接続しました"))
