@@ -6,12 +6,8 @@ const User = require("../mongodb-settings/User");
 router.post("/register", async (req, res) => {
     try {
 
-        // データ情報を含むインスタンスの生成（コンストラクタの引数はreq.bodyでもOK）。
-        const newUser = new User({
-            username: req.body.username,
-            email: req.body.email,
-            password: req.body.password,
-        }) // newUser = {フィールド: (データ情報), save: () => {...}, ...}
+        // データ情報を含むインスタンスの生成
+        const newUser = new User(req.body) // newUser = {フィールド: {user: ~, email: ~, ...}, save: () => {...}, ...}
 
         // newUserに格納されたデータをデータベースに追加する。
         const user = await newUser.save();
